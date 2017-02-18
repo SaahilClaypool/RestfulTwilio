@@ -12,20 +12,27 @@ public class Main{
 
     public static void main(String[] args) {
 	port(8000); 
-	System.out.println("Starting server"); 
-	get("/", (req, res) -> "Hello World");
-
-	post("/", (req, res) -> {
-		return "posting"; 
-	    }); 
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
-        Message message = Message
-                .creator(new PhoneNumber(" +19787601330"), new PhoneNumber("+19788505030"),
-                        "This is from TWILIO! what up isaac")
-                .create();
+	System.out.println("Starting server"); 
+	// get("/", (req, res) -> "Hello World");
+	get("/",  (req, res) -> {
+		Message message = Message
+		    // to -> from
+		    .creator(new PhoneNumber(" +19787601330"), new PhoneNumber("+19788505030"),
+			     "This is from TWILIO! what up isaac")
+		    .create();
+		System.out.println(message.getSid());
+		System.out.println("response : " + res + " t: " + res.getClass().getName());
+		System.out.println("request : " + res + " t: " + req.getClass().getName());
 
-        System.out.println(message.getSid());
+		System.out.println("responseInputStream : " + res.body());
 
+		return "sent message"; 
+	    }); 
+
+
+
+	
 	System.out.println("end of main"); 
     }
     
