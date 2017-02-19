@@ -3,6 +3,7 @@ import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 import spark.QueryParamsMap;
+import spark.Request;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,41 +22,47 @@ public class Main{
         get("/",  (req, res) -> {
             Message message = Message
                     // to -> from
-                    .creator(new PhoneNumber(" +19787601330"), new PhoneNumber("+19788505030"),
-                            "This is from TWILIO! what up isaac")
+                    .creator(new PhoneNumber(getFrom(req)), new PhoneNumber("+19788505030"),
+                           getBody(req))
                     .create();
-            System.out.println(message.getSid());
-            System.out.println("response : " + res + " t: " + res.getClass().getName());
-            System.out.println("request : " + res + " t: " + req.getClass().getName());
 
-            System.out.println("res body: " + res.body());
-            System.out.println("req body: " + req.body());
-            System.out.println("res toString: " + res.toString());
-            System.out.println("res body: " + res.toString());
 
-            System.out.println("res type : " + res.type());
-            System.out.println("req type : " + req.contentType());
-            System.out.println("req content " + req.scheme());
-            System.out.println("req query string" + req.queryString());
-            System.out.println("req atr" + req.attributes());
-            System.out.println("req atr q map" + req.queryMap());
-            QueryParamsMap params = req.queryMap();
-            Map<String, String[]> paramsMap = params.toMap();
-
-            paramsMap.forEach( (key , val ) -> {
-                System.out.println("Key: " + key);
-                System.out.println("Value: ");
-                for (int i = 0; i < val.length; i++){
-                    System.out.print(" " + val[i]);
-                }
-            });
-
+            System.out.println("Message from : " + getFrom(req));
             return "sent message";
         });
 
 
 
         System.out.println("end of main");
+    }
+
+
+    public static String getBody(Request request) {
+        Map<String, String[]> reqMap = request.queryMap().toMap();
+        String body = "";
+        if (reqMap.containsKey("Body")) {
+            String[] bodyAr = reqMap.get("Body");
+            for (int i = 0 ; i < bodyAr.length; i++) {
+                String cur = bodyAr[i];
+                body += cur;
+            }
+        }
+
+        return body;
+    }
+
+    public static String getFrom (Request request) {
+        Map<String, String[]> reqMap = request.queryMap().toMap();
+        String from = "";
+        if (reqMap.containsKey("From")) {
+            String[] bodyAr = reqMap.get("From");
+            for (int i = 0 ; i < bodyAr.length; i++) {
+                String cur = bodyAr[i];
+                from += cur;
+            }
+        }
+        return "";
+
     }
 
 
