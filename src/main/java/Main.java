@@ -44,7 +44,7 @@ public class Main{
 
             paramsMap.forEach( (key , val ) -> {
                 System.out.println("Key: " + key);
-                System.out.println("Value: " + );
+                System.out.println("Value: ");
                 for (int i = 0; i < val.length; i++){
                     System.out.print(" " + val[i]);
                 }
