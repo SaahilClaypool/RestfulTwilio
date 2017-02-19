@@ -2,6 +2,7 @@ import static spark.Spark.*;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
+import spark.QueryParamsMap;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,6 +39,17 @@ public class Main{
             System.out.println("req query string" + req.queryString());
             System.out.println("req atr" + req.attributes());
             System.out.println("req atr q map" + req.queryMap());
+            QueryParamsMap params = req.queryMap();
+            Map<String, String[]> paramsMap = params.toMap();
+
+            paramsMap.forEach( (key , val ) -> {
+                System.out.println("Key: " + key);
+                System.out.println("Value: " + );
+                for (int i = 0; i < val.length; i++){
+                    System.out.print(" " + val[i]);
+                }
+            });
+
             return "sent message";
         });
 
