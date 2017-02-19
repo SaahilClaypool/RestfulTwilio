@@ -1,1 +1,1 @@
-web: java -jar build/libs/TwilioTestReply.jar
+web: java -jar build/libs/TwilioTestReply.jar --port $PORT
