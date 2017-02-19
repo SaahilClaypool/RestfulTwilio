@@ -30,8 +30,14 @@ public class Main{
             System.out.println("res body: " + res.body());
             System.out.println("req body: " + req.body());
             System.out.println("res toString: " + res.toString());
-            System.out.println("res body: " + res.body());
+            System.out.println("res body: " + res.toString());
 
+            System.out.println("res type : " + res.type());
+            System.out.println("req type : " + req.contentType());
+            System.out.println("req content " + req.scheme());
+            System.out.println("req query string" + req.queryString());
+            System.out.println("req atr" + req.attributes());
+            System.out.println("req atr q map" + req.queryMap());
             return "sent message";
         });
 
