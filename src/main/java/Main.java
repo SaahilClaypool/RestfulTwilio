@@ -20,6 +20,7 @@ public class Main{
         System.out.println("Starting server");
         // get("/", (req, res) -> "Hello World");
         get("/",  (req, res) -> {
+            System.out.println("Got Message");
             Message message = Message
                     // to -> from
                     .creator(new PhoneNumber(getFrom(req)), new PhoneNumber("+19788505030"),
@@ -52,6 +53,7 @@ public class Main{
     }
 
     public static String getFrom (Request request) {
+        System.out.println("getting number");
         Map<String, String[]> reqMap = request.queryMap().toMap();
         String from = "";
         if (reqMap.containsKey("From")) {
@@ -61,7 +63,9 @@ public class Main{
                 from += cur;
             }
         }
-        return "";
+
+        System.out.println("from: " + from);
+        return from ;
 
     }
 
