@@ -27,7 +27,8 @@ public class Main{
             System.out.println("response : " + res + " t: " + res.getClass().getName());
             System.out.println("request : " + res + " t: " + req.getClass().getName());
 
-            System.out.println("responseInputStream : " + res.body());
+            System.out.println("res body: " + res.body());
+            System.out.println("req body: " + req.body());
 
             return "sent message";
         });
