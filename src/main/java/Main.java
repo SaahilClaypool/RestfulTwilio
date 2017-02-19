@@ -11,7 +11,7 @@ public class Main{
     public static final String AUTH_TOKEN = "39dcf1af88bab3d3dbc54a7188d6a3f0";
 
     public static void main(String[] args) {
-	port(8000); 
+	port(5000); 
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 	System.out.println("Starting server"); 
 	// get("/", (req, res) -> "Hello World");
@@ -29,7 +29,6 @@ public class Main{
 
 		return "sent message"; 
 	    }); 
-
 
 
 	

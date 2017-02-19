@@ -32,6 +32,20 @@ dependencies {
     // 'test.useTestNG()' to your build script.
     testCompile 'junit:junit:4.12'
 }
+
+// Include dependent libraries in archive.
+
+jar {
+  manifest {
+      attributes "Main-Class": "Main"
+        }
+
+  from {
+      configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+        
+}
+
+}
 task stage(dependsOn: ['build', 'clean'])
 build.mustRunAfter clean
 
