@@ -29,6 +29,8 @@ public class Main{
 
             System.out.println("res body: " + res.body());
             System.out.println("req body: " + req.body());
+            System.out.println("res toString: " + res.toString());
+            System.out.println("res body: " + res.body());
 
             return "sent message";
         });
