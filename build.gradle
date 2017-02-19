@@ -46,8 +46,8 @@ jar {
 }
 
 }
-task stage(dependsOn: ['build', 'clean'])
-build.mustRunAfter clean
+task stage(dependsOn: ['jar', 'clean'])
+jar.mustRunAfter clean
 
 
 apply plugin: 'application'
